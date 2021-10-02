@@ -20,7 +20,7 @@ export const ProductCard = ({ product }) => {
           <img src={product.image} alt="1st pic" className="w-full h-80" />
           <p className="h-20">{product.title}</p>
           <p>${product.price}</p>
-  
+
           {count ? (
             <div className="flex flex-row justify-around bg-blue-300 rounded-xl">
               <button onClick={() => addToCart(product)}>
@@ -46,4 +46,3 @@ export const ProductCard = ({ product }) => {
     </div>
   );
 };
-
