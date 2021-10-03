@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { CartItems } from "../contextAPI/CartContext";
 
 export const ProductCard = ({ product }) => {
-  const [cartProducts, addToCart, removeFromCart] = useContext(CartItems);
+  const {cartProducts, addToCart, removeFromCart} = useContext(CartItems);
   const [count, setCount] = useState(
     cartProducts.filter((item) => item.id === product.id).length
   );

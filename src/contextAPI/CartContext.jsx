@@ -25,10 +25,16 @@ const CartContext = ({ children }) => {
     localStorage.removeItem("cart");
   };
 
+  const removeCartItem = (product) => {
+    const tempCartProducts = cartProducts.filter((item) => item.id !== product.id)
+    setCardProducts(tempCartProducts)
+    localStorage.setItem("cart",JSON.stringify(tempCartProducts))
+  }
+
   return (
     <>
       <CartItems.Provider
-        value={[cartProducts, addToCart, removeFromCart, clearCart]}
+        value={{cartProducts, addToCart, removeFromCart, clearCart, removeCartItem}}
       >
         {children}
       </CartItems.Provider>

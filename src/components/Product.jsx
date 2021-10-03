@@ -4,7 +4,7 @@ import { Scrollbars } from "react-custom-scrollbars-2";
 import { ProductCard } from "./ProductCard";
 
 function Product() {
-  const [products, setProducts] = useContext(ProductList);
+  const [products] = useContext(ProductList);
 
   return (
     <>
@@ -12,7 +12,7 @@ function Product() {
         <div className=" bg-blue-100">
           <div className="grid grid-cols-4 gap-10 justify-items-center">
             {products.map((product) => (
-              <ProductCard product={product} />
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
         </div>

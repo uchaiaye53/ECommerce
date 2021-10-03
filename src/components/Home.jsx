@@ -1,13 +1,15 @@
 import React from "react";
 import Navbar from "./Navbar";
 import Product from "./Product";
-import About from "./About";
-import Contact from "./Contact";
+
 import Checkout from "./Checkout";
-import OrderSuccess from "./OrderSuccess";
 import Context from "../contextAPI/Context";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CartContext from "../contextAPI/CartContext";
+import About from "./pages/About";
+import OrderSuccess from "./pages/OrderSuccess";
+import Contact from "./pages/Contact";
+
 
 function Home() {
   return (

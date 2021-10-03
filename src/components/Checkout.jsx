@@ -3,7 +3,7 @@ import { CartItems } from "../contextAPI/CartContext";
 import { Link } from "react-router-dom";
 
 function Checkout() {
-  const [cartProducts] = useContext(CartItems);
+  const {cartProducts} = useContext(CartItems);
 
   let totalPrice = 0;
 

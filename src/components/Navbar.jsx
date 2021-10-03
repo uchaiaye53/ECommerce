@@ -6,7 +6,7 @@ import { CartItem } from "./CartItem";
 import { Scrollbars } from "react-custom-scrollbars-2";
 
 function Navbar() {
-  const [cartProducts, addToCart, removeFromCart, clearCart] =
+  const {cartProducts, clearCart} =
     useContext(CartItems);
 
   let totalPrice = 0;
@@ -69,8 +69,8 @@ function Navbar() {
           </div>
         </div>
       </nav>
-
-      <Modal isOpen={modalIsOpen} className="w-4/12 h-screen bg-blue-200">
+      <div className='flex'>
+      <Modal isOpen={modalIsOpen} ariaHideApp={false} className="w-4/12 h-screen bg-blue-200 ml-auto">
         <header className=" bg-blue-400 flex justify- justify-between h-16">
           <div className="text-gray-500 italic pt-3 text-4xl mx-3">Cart</div>
           <button onClick={() => setModalIsOpen(false)}>
@@ -85,7 +85,7 @@ function Navbar() {
         <div>
           <Scrollbars style={{ width: 500, height: 500 }}>
             {uniqueIds.map((id) => (
-              <CartItem id={id} count={cartCount[id]} />
+              <CartItem key={id} id={id} count={cartCount[id]} />
             ))}
           </Scrollbars>
           <div className="text-center font-bold text-2xl text-gray-600 mt-5 mb-5">
@@ -96,7 +96,7 @@ function Navbar() {
         </div>
 
         <div className="flex flex-row justify-around">
-          <Link to="/checkout">
+          <Link to={totalPrice>0 ? "/checkout" : "/"}>
             <button
               onClick={() => {
                 setModalIsOpen(false);
@@ -114,6 +114,7 @@ function Navbar() {
           </button>
         </div>
       </Modal>
+      </div>
     </div>
   );
 }

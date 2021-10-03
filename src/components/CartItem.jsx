@@ -4,7 +4,7 @@ import { ProductList } from "../contextAPI/Context";
 
 export const CartItem = ({ id, count }) => {
   const [products] = useContext(ProductList);
-  const [cartProducts, addToCart, removeFromCart] = useContext(CartItems);
+  const { addToCart, removeFromCart, removeCartItem} = useContext(CartItems);
 
   const currentProduct = products.find((item) => item.id === id);
 
@@ -17,7 +17,8 @@ export const CartItem = ({ id, count }) => {
             alt="product"
             className="rounded-lg mx-4 mt-6 h-24 w-20 border-blue-400"
           />
-          <button className=" p-1 text-sm bg-red-500 mx-7 rounded-lg mt-6">
+          <button className=" p-1 text-sm bg-red-500 mx-7 rounded-lg mt-6"
+          onClick={() => removeCartItem(currentProduct)}>
             remove
           </button>
         </div>
@@ -34,7 +35,8 @@ export const CartItem = ({ id, count }) => {
             <p className=" text-gray-700 text-xl p-7 font-bold">{count}</p>
             <button
               onClick={() => removeFromCart(currentProduct)}
-              className="bg-blue-300 my-10 px-1 rounded-full hover:-translate-y-1 transform transition focus:ring focus:ring-offset-2"
+              className="bg-blue-300 my-10 px-1 rounded-full hover:-translate-y-1 transform transition focus:ring focus:ring-offset-2
+              "
             >
               <i className="fa fa-minus text-3xl text-gray-500"></i>
             </button>
