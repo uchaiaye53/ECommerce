@@ -6,6 +6,11 @@ import { CartItem } from "./CartItem";
 import { Scrollbars } from "react-custom-scrollbars-2";
 
 function Navbar() {
+
+  const [menuIsOpen,setMenuIsOpen] = useState(false);
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
   const {cartProducts, clearCart} =
     useContext(CartItems);
 
@@ -26,16 +31,24 @@ function Navbar() {
     return count;
   }, [cartProducts]);
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  
 
   const navbarComponent =
     "bg-blue-500 rounded-2xl px-4 py-2 pb-5 font-semibold text-lg text-center hover:bg-blue-300 hover:-translate-y-1 transform transition";
+  const menubarComponent= "bg-blue-500 w-48 rounded-2xl px-10 py-3 font-semibold text-lg text-center hover:bg-blue-400 hover:-translate-y-1 transform transition mr-auto";
 
   return (
     <div>
       <nav>
-        <div className=" bg-blue-800 flex justify- justify-between h-20">
-          <div className="w-20 h-20 flex mx-7">
+        <div className=" bg-blue-800 flex justify-between h-20">
+
+          <div className="md:hidden">
+            <button onClick={() =>setMenuIsOpen(!menuIsOpen)} className=" ml-10 mt-2">
+          <i className="fa fa-bars pt-4 text-4xl "></i>
+          </button>
+          </div>
+
+          <div className="md:w-20 md:h-20 flex md:ml-10 ml-0 w-44 h-16">
             <img
               className="rounded-full"
               src="https://cdn.pixabay.com/photo/2020/06/30/10/23/icon-5355893_960_720.png"
@@ -44,7 +57,7 @@ function Navbar() {
             <p className="text-gray-400 italic pt-8 text-2xl">ShopNOW</p>
           </div>
 
-          <div className="flex space-x-5 px-5 py-5">
+          <div className=" md:flex space-x-5 px-5 py-5 hidden " >
             <Link to="/" className={navbarComponent}>
               <div> products</div>
             </Link>
@@ -67,10 +80,31 @@ function Navbar() {
               {cartProducts.length}
             </p>
           </div>
+
+          
+
         </div>
+
+        { menuIsOpen? <div className="flex px-5 py-5 items-baseline flex-col bg-blue-300 w-full space-y-2">
+              <Link to="/" className={menubarComponent}>
+                <div> products</div>
+              </Link>
+              <Link to="/about" className={menubarComponent}>
+                <div> about </div>
+              </Link>
+              <Link to="/contact" className={menubarComponent}>
+                <div> contact</div>
+              </Link>
+            </div>: ""
+        }
       </nav>
+
+
+
+
+
       <div className='flex'>
-      <Modal isOpen={modalIsOpen} ariaHideApp={false} className="w-4/12 h-screen bg-blue-200 ml-auto">
+      <Modal isOpen={modalIsOpen} ariaHideApp={false} className="md:w-4/12 h-screen bg-blue-200 ml-auto ">
         <header className=" bg-blue-400 flex justify- justify-between h-16">
           <div className="text-gray-500 italic pt-3 text-4xl mx-3">Cart</div>
           <button onClick={() => setModalIsOpen(false)}>

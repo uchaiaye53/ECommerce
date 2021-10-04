@@ -10,8 +10,8 @@ function Checkout() {
   cartProducts.map((item) => (totalPrice += item.price));
 
   return (
-    <div className=" bg-blue-200 h-screen">
-      <div className="w-3/6 mx-auto p-8">
+    <div className=" bg-blue-200 w-full h-screen">
+      <div className="md:w-3/6 mx-auto p-8 sm:w-full">
         <div className="mb-8 italic text-2xl text-gray-700 text-center font-bold">
           Checkout Now
         </div>
@@ -53,7 +53,7 @@ function Checkout() {
             <h4 className="font-semibold italic ">Total Cost: </h4>
             <h6 className="flex-grow text-right">{totalPrice.toFixed(2)}$</h6>
           </div>
-          <div className="flex justify-between mx-4">
+          <div className="justify-between mx-4 grid sm:grid-col-1 lg:grid-cols-2 lg:space-y-0 space-y-3">
             <Link to="/success">
               <button
                 className="bg-blue-500 px-10 py-3 rounded-xl hover:-translate-y-1 transform transition focus:ring focus:ring-offset-2"
